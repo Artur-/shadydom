@@ -321,8 +321,8 @@ export function renderRootNode(element) {
 
 export function setAttribute(node, attr, value) {
   // avoid scoping elements in non-main document to avoid template documents
-  if (window.ShadyCSS && attr === 'class' && node.ownerDocument === document) {
-    window.ShadyCSS.setElementClass(node, value);
+  if (window.ScopingShim && attr === 'class' && node.ownerDocument === document) {
+    window.ScopingShim.setElementClass(node, value);
   } else {
     nativeMethods.setAttribute.call(node, attr, value);
     distributeAttributeChange(node, attr);
